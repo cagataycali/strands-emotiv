@@ -1,0 +1,47 @@
+{% extends "main.html" %}
+
+{% block content %}
+<div class="lost" role="main" aria-label="page not found">
+  <canvas id="flatline" width="720" height="120" aria-hidden="true"></canvas>
+  <h1>404</h1>
+  <p class="ambient">[brain: signal lost · CQ 0/14 · this page does not exist]</p>
+  <p class="lost-hint">The electrode moved. <a href="{{ config.site_url | default('/', true) }}">Re-seat at the index</a> and watch CQ climb back.</p>
+</div>
+<style>
+  .lost { text-align: center; padding: 3rem 0 4rem; }
+  .lost h1 {
+    font-family: var(--md-code-font-family);
+    font-size: 3.4rem;
+    letter-spacing: .18em;
+    color: var(--ink);
+    margin: .4rem 0 .6rem;
+  }
+  .lost canvas { max-width: 100%; opacity: .9; }
+  .lost-hint { color: var(--ink-dim); margin-top: 1.2rem; }
+</style>
+<script>
+  (function () {
+    var c = document.getElementById('flatline');
+    if (!c || !c.getContext) return;
+    var ctx = c.getContext('2d'), W = c.width, H = c.height, mid = H / 2, t = 0;
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function draw() {
+      ctx.clearRect(0, 0, W, H);
+      ctx.strokeStyle = 'rgba(78, 225, 194, .8)';
+      ctx.lineWidth = 1.5;
+      ctx.beginPath();
+      for (var x = 0; x < W; x++) {
+        // flatline with one dying blip that drifts left
+        var blip = Math.exp(-Math.pow((x - (W - (t % (W * 2)))) / 14, 2)) * 26 * Math.sin((x - t) / 4);
+        var noise = (Math.random() - 0.5) * 1.2;
+        var y = mid + blip + noise;
+        x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+      }
+      ctx.stroke();
+      t += 2;
+      if (!reduced) requestAnimationFrame(draw);
+    }
+    draw();
+  })();
+</script>
+{% endblock %}

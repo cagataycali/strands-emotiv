@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 250" width="800" height="250" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" role="img" aria-labelledby="t d">
+<title id="t">The cable charges. The dongle carries data.</title>
+<desc id="d">Left: EPOC X on the USB cable. The LED is on but queryHeadsets returns connectedBy usb cable with an empty sensors list, and createSession fails with error -32152 not ready. The cable only charges. Right: the USB dongle. Fourteen sensors populate and doctor reports Cortex, headset and streams all green. With reduced motion both final states are shown.</desc>
+<style>
+  @media (prefers-reduced-motion: no-preference){
+    .led{animation:led 8s ease-in-out infinite}
+    .l1{animation:t1 8s linear infinite} .l2{animation:t2 8s linear infinite} .l3{animation:t3 8s linear infinite}
+    .r1{animation:t4 8s linear infinite} .r2{animation:t5 8s linear infinite}
+    .s0{animation:pop0 8s linear infinite;transform-box:fill-box;transform-origin:center}@keyframes pop0{0%,50%{opacity:.15;transform:scale(.4)}52%,100%{opacity:1;transform:scale(1)}}
+.s1{animation:pop1 8s linear infinite;transform-box:fill-box;transform-origin:center}@keyframes pop1{0%,52%{opacity:.15;transform:scale(.4)}54%,100%{opacity:1;transform:scale(1)}}
+.s2{animation:pop2 8s linear infinite;transform-box:fill-box;transform-origin:center}@keyframes pop2{0%,54%{opacity:.15;transform:scale(.4)}56%,100%{opacity:1;transform:scale(1)}}
+.s3{animation:pop3 8s linear infinite;transform-box:fill-box;transform-origin:center}@keyframes pop3{0%,56%{opacity:.15;transform:scale(.4)}58%,100%{opacity:1;transform:scale(1)}}
+.s4{animation:pop4 8s linear infinite;transform-box:fill-box;transform-origin:center}@keyframes pop4{0%,58%{opacity:.15;transform:scale(.4)}60%,100%{opacity:1;transform:scale(1)}}
+.s5{animation:pop5 8s linear infinite;transform-box:fill-box;transform-origin:center}@keyframes pop5{0%,60%{opacity:.15;transform:scale(.4)}62%,100%{opacity:1;transform:scale(1)}}
+.s6{animation:pop6 8s linear infinite;transform-box:fill-box;transform-origin:center}@keyframes pop6{0%,62%{opacity:.15;transform:scale(.4)}64%,100%{opacity:1;transform:scale(1)}}
+.s7{animation:pop7 8s linear infinite;transform-box:fill-box;transform-origin:center}@keyframes pop7{0%,64%{opacity:.15;transform:scale(.4)}66%,100%{opacity:1;transform:scale(1)}}
+.s8{animation:pop8 8s linear infinite;transform-box:fill-box;transform-origin:center}@keyframes pop8{0%,66%{opacity:.15;transform:scale(.4)}68%,100%{opacity:1;transform:scale(1)}}
+.s9{animation:pop9 8s linear infinite;transform-box:fill-box;transform-origin:center}@keyframes pop9{0%,68%{opacity:.15;transform:scale(.4)}70%,100%{opacity:1;transform:scale(1)}}
+.s10{animation:pop10 8s linear infinite;transform-box:fill-box;transform-origin:center}@keyframes pop10{0%,70%{opacity:.15;transform:scale(.4)}72%,100%{opacity:1;transform:scale(1)}}
+.s11{animation:pop11 8s linear infinite;transform-box:fill-box;transform-origin:center}@keyframes pop11{0%,72%{opacity:.15;transform:scale(.4)}74%,100%{opacity:1;transform:scale(1)}}
+.s12{animation:pop12 8s linear infinite;transform-box:fill-box;transform-origin:center}@keyframes pop12{0%,74%{opacity:.15;transform:scale(.4)}76%,100%{opacity:1;transform:scale(1)}}
+.s13{animation:pop13 8s linear infinite;transform-box:fill-box;transform-origin:center}@keyframes pop13{0%,76%{opacity:.15;transform:scale(.4)}78%,100%{opacity:1;transform:scale(1)}}
+  }
+  @keyframes led{0%,100%{opacity:.4}10%,30%{opacity:1}}
+  @keyframes t1{0%,8%{opacity:0}12%,100%{opacity:1}}
+  @keyframes t2{0%,18%{opacity:0}22%,100%{opacity:1}}
+  @keyframes t3{0%,30%{opacity:0}34%,100%{opacity:1}}
+  @keyframes t4{0%,48%{opacity:0}52%,100%{opacity:1}}
+  @keyframes t5{0%,80%{opacity:0}84%,100%{opacity:1}}
+</style>
+<rect x="1" y="1" width="798" height="248" rx="12" fill="#0b0e14" stroke="#232b36"/>
+<line x1="400" y1="16" x2="400" y2="234" stroke="#1d2430"/>
+
+<!-- LEFT: the cable -->
+<text x="30" y="30" font-size="13" fill="#ff7a7a">USB cable</text>
+<text x="370" y="30" font-size="10" fill="#586069" text-anchor="end">the trap</text>
+<circle cx="90" cy="120" r="52" fill="none" stroke="#2a323e" stroke-width="1.5"/>
+<path d="M 83 70 L 90 60 L 97 70" fill="none" stroke="#2a323e" stroke-width="1.5"/>
+<circle cx="79.0" cy="87.0" r="5" fill="#2a323e"/>
+<circle cx="59.2" cy="100.2" r="5" fill="#2a323e"/>
+<circle cx="74.6" cy="100.2" r="5" fill="#2a323e"/>
+<circle cx="65.8" cy="111.2" r="5" fill="#2a323e"/>
+<circle cx="52.6" cy="120" r="5" fill="#2a323e"/>
+<circle cx="59.2" cy="142.0" r="5" fill="#2a323e"/>
+<circle cx="76.8" cy="157.4" r="5" fill="#2a323e"/>
+<circle cx="103.2" cy="157.4" r="5" fill="#2a323e"/>
+<circle cx="120.8" cy="142.0" r="5" fill="#2a323e"/>
+<circle cx="127.4" cy="120" r="5" fill="#2a323e"/>
+<circle cx="114.2" cy="111.2" r="5" fill="#2a323e"/>
+<circle cx="105.4" cy="100.2" r="5" fill="#2a323e"/>
+<circle cx="120.8" cy="100.2" r="5" fill="#2a323e"/>
+<circle cx="101.0" cy="87.0" r="5" fill="#2a323e"/>
+<circle class="led" cx="90" cy="120" r="4" fill="#ffb454"/>
+<text x="90" y="196" font-size="9" fill="#8b949e" text-anchor="middle">LED on. looks alive.</text>
+<g font-size="10">
+<text class="l1" x="165" y="92" fill="#8b949e">connectedBy: <tspan fill="#c9d1d9">"usb cable"</tspan></text>
+<text class="l2" x="165" y="112" fill="#8b949e">sensors: <tspan fill="#ff7a7a">[]</tspan></text>
+<text class="l3" x="165" y="132" fill="#8b949e">createSession → <tspan fill="#ff7a7a">-32152 "not ready"</tspan></text>
+</g>
+<text x="30" y="226" font-size="11" fill="#ff7a7a">✗ charges only. no data, ever.</text>
+
+<!-- RIGHT: the dongle -->
+<text x="430" y="30" font-size="13" fill="#4ee1c2">USB dongle</text>
+<text x="770" y="30" font-size="10" fill="#586069" text-anchor="end">the fix</text>
+<circle cx="490" cy="120" r="52" fill="none" stroke="#2a323e" stroke-width="1.5"/>
+<path d="M 483 70 L 490 60 L 497 70" fill="none" stroke="#2a323e" stroke-width="1.5"/>
+<circle class="s0" cx="479.0" cy="87.0" r="5" fill="#4ee1c2"/>
+<circle class="s1" cx="459.2" cy="100.2" r="5" fill="#4ee1c2"/>
+<circle class="s2" cx="474.6" cy="100.2" r="5" fill="#4ee1c2"/>
+<circle class="s3" cx="465.8" cy="111.2" r="5" fill="#4ee1c2"/>
+<circle class="s4" cx="452.6" cy="120" r="5" fill="#4ee1c2"/>
+<circle class="s5" cx="459.2" cy="142.0" r="5" fill="#4ee1c2"/>
+<circle class="s6" cx="476.8" cy="157.4" r="5" fill="#4ee1c2"/>
+<circle class="s7" cx="503.2" cy="157.4" r="5" fill="#4ee1c2"/>
+<circle class="s8" cx="520.8" cy="142.0" r="5" fill="#4ee1c2"/>
+<circle class="s9" cx="527.4" cy="120" r="5" fill="#4ee1c2"/>
+<circle class="s10" cx="514.2" cy="111.2" r="5" fill="#4ee1c2"/>
+<circle class="s11" cx="505.4" cy="100.2" r="5" fill="#4ee1c2"/>
+<circle class="s12" cx="520.8" cy="100.2" r="5" fill="#4ee1c2"/>
+<circle class="s13" cx="501.0" cy="87.0" r="5" fill="#4ee1c2"/>
+<text x="490" y="196" font-size="9" fill="#8b949e" text-anchor="middle">14 sensors populate</text>
+<g font-size="10">
+<text class="r1" x="565" y="92" fill="#8b949e">connectedBy: <tspan fill="#c9d1d9">"dongle"</tspan></text>
+<text class="r1" x="565" y="112" fill="#8b949e">sensors: <tspan fill="#4ee1c2">14</tspan></text>
+<text class="r2" x="565" y="132" fill="#8b949e">doctor: <tspan fill="#4ee1c2">Cortex ✓ headset ✓ streams ✓</tspan></text>
+</g>
+<text x="430" y="226" font-size="11" fill="#4ee1c2">✓ data flows. plug this one in.</text>
+</svg>

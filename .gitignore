@@ -1,0 +1,18 @@
+.env
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+node_modules/
+dashboard/frontend/dist/
+recordings/
+*.egg-info/
+.logs/
+datasets/
+site/
+dist/
+
+# internal coordination notes, not part of the project
+.steward/
+paper/dist/

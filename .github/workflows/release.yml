@@ -1,0 +1,24 @@
+name: release
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  pypi:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - run: cd dashboard/frontend && npm ci && npm run build
+      - uses: astral-sh/setup-uv@v5
+      - run: uv build
+      - run: uv publish --token "${{ secrets.PYPI_API_TOKEN }}" --check-url https://pypi.org/simple/strands-emotiv/
+      - uses: softprops/action-gh-release@v2
+        with:
+          files: dist/*
+          generate_release_notes: true

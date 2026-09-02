@@ -1,0 +1,81 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "strands-emotiv"
+version = "0.2.1"
+description = "An agent that can feel the person it is talking to. EMOTIV EPOC X as Strands tools, a live brain dashboard, and LeRobot v3 datasets."
+readme = "README.md"
+requires-python = ">=3.12"
+license = { text = "MIT" }
+authors = [{ name = "Cagatay Cali" }]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering :: Human Machine Interfaces",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+keywords = ["eeg", "bci", "emotiv", "epoc-x", "cortex", "strands", "agent"]
+dependencies = [
+    "websockets>=12",
+    "python-dotenv",
+    "numpy",
+    "strands-agents>=1.0.0,<2.0.0",
+    "strands-agents-tools",
+    "fastapi",
+    "uvicorn[standard]",
+    "webauthn>=2.0",
+    "strands-mcp-server>=0.1.4",
+]
+
+[project.optional-dependencies]
+dev = ["pytest", "pytest-asyncio", "ruff"]
+dataset = [
+    "pandas>=2",
+    "pyarrow>=15",
+]
+
+[project.urls]
+Homepage = "https://cagataycali.github.io/strands-emotiv/"
+Documentation = "https://cagataycali.github.io/strands-emotiv/"
+Video = "https://www.youtube.com/watch?v=eGYnLK_RREM"
+Dataset = "https://huggingface.co/datasets/cagataydev/emotiv-ecot"
+
+[project.scripts]
+strands-emotiv = "strands_emotiv.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["strands_emotiv"]
+
+[tool.hatch.build.targets.wheel.force-include]
+"dashboard/frontend/dist" = "strands_emotiv/_dashboard"
+
+[tool.hatch.build.targets.sdist]
+include = ["strands_emotiv/**", "dashboard/frontend/dist/**", "README.md", "LICENSE", "pyproject.toml"]
+ignore-vcs = true
+exclude = ["strands_emotiv/__pycache__", "**/*.pyc"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+# Explicit so results don't depend on user-level ruff config.
+select = ["E4", "E7", "E9", "F", "I", "UP", "B", "SIM", "RUF"]
+ignore = [
+    "SIM105",  # try/except/pass over suppress(): the reflex arc avoids an import + context frame
+    "SIM115",  # tarfile/tmp handles are closed explicitly where lifetime outlives the block
+    "RUF001", "RUF003",  # ℹ/× in CLI output and comments are intentional typography
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["E402"]  # fixtures set sys.path / env before imports

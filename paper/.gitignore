@@ -1,0 +1,10 @@
+part*/main.pdf
+part*/*.aux
+part*/*.log
+part*/*.out
+part*/*.fls
+part*/*.fdb_latexmk
+part*/*.bbl
+part*/*.blg
+part*/*.synctex.gz
+review/

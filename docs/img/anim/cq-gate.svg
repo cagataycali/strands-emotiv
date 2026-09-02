@@ -1,0 +1,128 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 240" width="800" height="240" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" role="img" aria-labelledby="t d">
+<title id="t">Absent is not zero: contact quality gates everything</title>
+<desc id="d">A 14 electrode head map fed by the dev stream at 2 Hz. All 14 read clean and the ambient line says CQ 14 of 14. T7 dries (a simulated dropout, the recorded baseline is all green): the line changes to CQ 13 of 14 and the agent keeps talking. Five more dry, 8 of 14 crosses below the 10 of 14 gate, and the line is replaced by the refusal: I can't see your brain right now. Missing data changes what the agent says. It never becomes a fake zero. With reduced motion, three small heads show the three states side by side.</desc>
+<style>
+  @media (prefers-reduced-motion: no-preference){
+    .aT7{animation:t7f 14s linear infinite}
+    .aF7{animation:d1 14s linear infinite} .aFC5{animation:d2 14s linear infinite}
+    .aP7{animation:d3 14s linear infinite} .aT8{animation:d4 14s linear infinite}
+    .aO1{animation:d5 14s linear infinite}
+    .cA{animation:kA 14s linear infinite} .cB{animation:kB 14s linear infinite} .cC{animation:kC 14s linear infinite}
+    .bar{animation:kbar 14s linear infinite;transform-box:fill-box;transform-origin:left center}
+    .orbs{animation:pulse 3s ease-in-out infinite}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .anim-scene{display:none !important}
+    .rm-only{display:inline !important}
+  }
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.82}}
+  @keyframes t7f{0%,28%{fill:#4ee1c2}33%{fill:#ffb454}38%,100%{fill:#30363d}}
+  @keyframes d1{0%,57%{fill:#4ee1c2}60%,100%{fill:#30363d}}
+  @keyframes d2{0%,59%{fill:#4ee1c2}62%,100%{fill:#30363d}}
+  @keyframes d3{0%,61%{fill:#4ee1c2}64%,100%{fill:#30363d}}
+  @keyframes d4{0%,63%{fill:#4ee1c2}66%,100%{fill:#30363d}}
+  @keyframes d5{0%,65%{fill:#4ee1c2}68%,100%{fill:#30363d}}
+  @keyframes kA{0%,30%{opacity:1}33%,100%{opacity:0}}
+  @keyframes kB{0%,31%{opacity:0}34%,58%{opacity:1}61%,100%{opacity:0}}
+  @keyframes kC{0%,59%{opacity:0}62%,100%{opacity:1}}
+  @keyframes kbar{0%,28%{transform:scaleX(1)}33%,57%{transform:scaleX(.929)}68%,100%{transform:scaleX(.571)}}
+</style>
+<rect x="1" y="1" width="798" height="238" rx="12" fill="#0b0e14" stroke="#232b36"/>
+<g class="anim-scene">
+<text x="20" y="26" font-size="12" fill="#8b949e">contact quality · <tspan fill="#c9d1d9">dev stream @ 2 Hz</tspan> · dropout simulated, baseline is the real all-green record</text>
+<g class="orbs">
+<circle cx="140" cy="138" r="88" fill="none" stroke="#2a323e" stroke-width="1.5"/>
+<path d="M 132 52 L 140 41 L 148 52" fill="none" stroke="#2a323e" stroke-width="1.5"/>
+<circle class="aAF3" cx="121.0" cy="81.0" r="9" fill="#4ee1c2"/>
+<circle class="aF7" cx="86.8" cy="103.8" r="9" fill="#4ee1c2"/>
+<circle class="aF3" cx="113.4" cy="103.8" r="9" fill="#4ee1c2"/>
+<circle class="aFC5" cx="98.2" cy="122.8" r="9" fill="#4ee1c2"/>
+<circle class="aT7" cx="75.4" cy="138" r="9" fill="#4ee1c2"/>
+<text x="61.400000000000006" y="142" font-size="9" fill="#8b949e" text-anchor="end">T7</text>
+<circle class="aP7" cx="86.8" cy="176.0" r="9" fill="#4ee1c2"/>
+<circle class="aO1" cx="117.2" cy="202.6" r="9" fill="#4ee1c2"/>
+<circle class="aO2" cx="162.8" cy="202.6" r="9" fill="#4ee1c2"/>
+<circle class="aP8" cx="193.2" cy="176.0" r="9" fill="#4ee1c2"/>
+<circle class="aT8" cx="204.6" cy="138" r="9" fill="#4ee1c2"/>
+<circle class="aFC6" cx="181.8" cy="122.8" r="9" fill="#4ee1c2"/>
+<circle class="aF4" cx="166.6" cy="103.8" r="9" fill="#4ee1c2"/>
+<circle class="aF8" cx="193.2" cy="103.8" r="9" fill="#4ee1c2"/>
+<circle class="aAF4" cx="159.0" cy="81.0" r="9" fill="#4ee1c2"/>
+</g>
+<!-- chips -->
+<g class="cA">
+<rect x="310" y="66" width="400" height="26" rx="13" fill="#101722" stroke="#26547a"/>
+<text x="324" y="83" font-size="12" fill="#7aa2ff">[brain: theta dominant · <tspan fill="#4ee1c2">CQ 14/14 good</tspan>]</text>
+</g>
+<g class="cB" opacity="0">
+<rect x="310" y="66" width="400" height="26" rx="13" fill="#101722" stroke="#26547a"/>
+<text x="324" y="83" font-size="12" fill="#7aa2ff">[brain: theta dominant · <tspan fill="#ffb454">CQ 13/14</tspan>]</text>
+<text x="310" y="110" font-size="10" fill="#8b949e">T7 dry. the line changed, the talk continues.</text>
+</g>
+<g class="cC" opacity="0">
+<rect x="310" y="66" width="400" height="26" rx="13" fill="#160f12" stroke="#7a2f3a"/>
+<text x="324" y="83" font-size="12" fill="#ff7a7a">"I can't see your brain right now"</text>
+<text x="310" y="110" font-size="10" fill="#8b949e">CQ 8/14, below the gate. the agent says so instead of guessing.</text>
+</g>
+<!-- gate meter -->
+<text x="310" y="150" font-size="10" fill="#8b949e">electrodes reading clean</text>
+<rect x="310" y="158" width="400" height="8" rx="4" fill="#131a26"/>
+<rect class="bar" x="310" y="158" width="400" height="8" rx="4" fill="#4ee1c2" opacity=".55"/>
+<line x1="595.7" y1="152" x2="595.7" y2="172" stroke="#ffb454"/>
+<text x="595.7" y="184" font-size="9" fill="#ffb454" text-anchor="middle">gate 10/14</text>
+<text x="310" y="216" font-size="10" fill="#586069">absent ≠ zero. missing data changes what the agent says, it never becomes a fake 0.</text>
+</g>
+<g class="rm-only" style="display:none">
+<text x="20" y="26" font-size="12" fill="#8b949e">contact quality gates everything · three states</text>
+<circle cx="170" cy="120" r="50" fill="none" stroke="#2a323e" stroke-width="1.5"/>
+<path d="M 162 72 L 170 61 L 178 72" fill="none" stroke="#2a323e" stroke-width="1.5"/>
+<circle cx="159.5" cy="88.5" r="5" fill="#4ee1c2"/>
+<circle cx="140.6" cy="101.1" r="5" fill="#4ee1c2"/>
+<circle cx="155.3" cy="101.1" r="5" fill="#4ee1c2"/>
+<circle cx="146.9" cy="111.6" r="5" fill="#4ee1c2"/>
+<circle cx="134.3" cy="120" r="5" fill="#4ee1c2"/>
+<circle cx="140.6" cy="141.0" r="5" fill="#4ee1c2"/>
+<circle cx="157.4" cy="155.7" r="5" fill="#4ee1c2"/>
+<circle cx="182.6" cy="155.7" r="5" fill="#4ee1c2"/>
+<circle cx="199.4" cy="141.0" r="5" fill="#4ee1c2"/>
+<circle cx="205.7" cy="120" r="5" fill="#4ee1c2"/>
+<circle cx="193.1" cy="111.6" r="5" fill="#4ee1c2"/>
+<circle cx="184.7" cy="101.1" r="5" fill="#4ee1c2"/>
+<circle cx="199.4" cy="101.1" r="5" fill="#4ee1c2"/>
+<circle cx="180.5" cy="88.5" r="5" fill="#4ee1c2"/>
+<circle cx="400" cy="120" r="50" fill="none" stroke="#2a323e" stroke-width="1.5"/>
+<path d="M 392 72 L 400 61 L 408 72" fill="none" stroke="#2a323e" stroke-width="1.5"/>
+<circle cx="389.5" cy="88.5" r="5" fill="#4ee1c2"/>
+<circle cx="370.6" cy="101.1" r="5" fill="#4ee1c2"/>
+<circle cx="385.3" cy="101.1" r="5" fill="#4ee1c2"/>
+<circle cx="376.9" cy="111.6" r="5" fill="#4ee1c2"/>
+<circle cx="364.3" cy="120" r="5" fill="#30363d"/>
+<circle cx="370.6" cy="141.0" r="5" fill="#4ee1c2"/>
+<circle cx="387.4" cy="155.7" r="5" fill="#4ee1c2"/>
+<circle cx="412.6" cy="155.7" r="5" fill="#4ee1c2"/>
+<circle cx="429.4" cy="141.0" r="5" fill="#4ee1c2"/>
+<circle cx="435.7" cy="120" r="5" fill="#4ee1c2"/>
+<circle cx="423.1" cy="111.6" r="5" fill="#4ee1c2"/>
+<circle cx="414.7" cy="101.1" r="5" fill="#4ee1c2"/>
+<circle cx="429.4" cy="101.1" r="5" fill="#4ee1c2"/>
+<circle cx="410.5" cy="88.5" r="5" fill="#4ee1c2"/>
+<circle cx="630" cy="120" r="50" fill="none" stroke="#2a323e" stroke-width="1.5"/>
+<path d="M 622 72 L 630 61 L 638 72" fill="none" stroke="#2a323e" stroke-width="1.5"/>
+<circle cx="619.5" cy="88.5" r="5" fill="#4ee1c2"/>
+<circle cx="600.6" cy="101.1" r="5" fill="#30363d"/>
+<circle cx="615.3" cy="101.1" r="5" fill="#4ee1c2"/>
+<circle cx="606.9" cy="111.6" r="5" fill="#30363d"/>
+<circle cx="594.3" cy="120" r="5" fill="#30363d"/>
+<circle cx="600.6" cy="141.0" r="5" fill="#30363d"/>
+<circle cx="617.4" cy="155.7" r="5" fill="#30363d"/>
+<circle cx="642.6" cy="155.7" r="5" fill="#4ee1c2"/>
+<circle cx="659.4" cy="141.0" r="5" fill="#4ee1c2"/>
+<circle cx="665.7" cy="120" r="5" fill="#30363d"/>
+<circle cx="653.1" cy="111.6" r="5" fill="#4ee1c2"/>
+<circle cx="644.7" cy="101.1" r="5" fill="#4ee1c2"/>
+<circle cx="659.4" cy="101.1" r="5" fill="#4ee1c2"/>
+<circle cx="640.5" cy="88.5" r="5" fill="#4ee1c2"/>
+<g font-size="10" text-anchor="middle"><text x="170" y="196" fill="#4ee1c2">14/14 · good</text><text x="400" y="196" fill="#ffb454">13/14 · keeps talking</text><text x="630" y="196" fill="#ff7a7a">8/14 · "I can't see your brain"</text></g>
+<text x="400" y="222" font-size="10" fill="#586069" text-anchor="middle">absent ≠ zero. missing data changes what the agent says, it never becomes a fake 0.</text>
+</g>
+</svg>

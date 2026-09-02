@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🧠 strands-emotiv — cagatay's brain</title>
+<style>
+  :root {
+    --bg: #06070d;
+    --card: rgba(255,255,255,.045);
+    --border: rgba(255,255,255,.09);
+    --text: #e8ecf4;
+    --dim: #7d879c;
+    --neon: #7df9ff;
+    --pink: #ff5d8f;
+    --green: #4ade80;
+    --amber: #fbbf24;
+    --red: #f87171;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  body {
+    background: radial-gradient(1200px 700px at 70% -10%, #131a33 0%, var(--bg) 55%);
+    color: var(--text);
+    font: 14px/1.45 "SF Mono", ui-monospace, Menlo, monospace;
+    min-height: 100vh; padding: 24px;
+  }
+  header { display:flex; align-items:baseline; gap:14px; margin-bottom:20px; }
+  h1 { font-size: 20px; letter-spacing:.06em; }
+  h1 .neon { color: var(--neon); text-shadow: 0 0 18px rgba(125,249,255,.55); }
+  #conn { font-size:12px; color:var(--dim); }
+  #conn.live { color: var(--green); }
+  .grid { display:grid; gap:16px; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
+  .card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 16px; padding: 18px;
+    backdrop-filter: blur(12px);
+  }
+  .card h2 { font-size: 12px; color: var(--dim); letter-spacing:.14em;
+             text-transform: uppercase; margin-bottom: 14px; }
+  /* metric bars */
+  .metric { margin-bottom: 10px; }
+  .metric .lbl { display:flex; justify-content:space-between; font-size:12px; margin-bottom:4px; }
+  .bar { height: 8px; border-radius: 6px; background: rgba(255,255,255,.06); overflow: hidden; }
+  .bar i { display:block; height:100%; border-radius:6px; width:0%;
+           transition: width .5s ease; background: linear-gradient(90deg, var(--neon), var(--pink)); }
+  /* head map */
+  #head { width: 100%; max-width: 260px; margin: 0 auto; display: block; }
+  .sensor { fill: #333a4d; stroke: rgba(255,255,255,.25); stroke-width: 1; transition: fill .4s; }
+  .sensor-label { font-size: 7px; fill: var(--dim); text-anchor: middle; }
+  .kv { display:grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .kv div { background: rgba(255,255,255,.03); border-radius: 10px; padding: 10px; }
+  .kv b { display:block; font-size: 18px; color: var(--neon); }
+  .kv span { font-size: 11px; color: var(--dim); }
+  #fac { font-size: 26px; text-align:center; padding: 12px 0; letter-spacing: .2em; }
+  canvas { width: 100%; height: 140px; }
+  footer { margin-top: 18px; color: var(--dim); font-size: 11px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>🧠 <span class="neon">strands-emotiv</span> · cagatay's brain</h1>
+  <span id="conn">connecting…</span>
+</header>
+
+<div class="grid">
+  <div class="card">
+    <h2>Performance metrics</h2>
+    <div id="metrics"></div>
+  </div>
+
+  <div class="card">
+    <h2>Contact quality — EPOC X</h2>
+    <svg id="head" viewBox="0 0 200 220"></svg>
+  </div>
+
+  <div class="card">
+    <h2>Device</h2>
+    <div class="kv">
+      <div><b id="battery">–</b><span>battery %</span></div>
+      <div><b id="signal">–</b><span>wireless signal</span></div>
+      <div><b id="overall">–</b><span>EEG quality</span></div>
+      <div><b id="headset">–</b><span>headset</span></div>
+    </div>
+    <div id="fac">😐</div>
+  </div>
+
+  <div class="card" style="grid-column: 1 / -1;">
+    <h2>Focus & stress — last minutes</h2>
+    <canvas id="trend" width="900" height="140"></canvas>
+  </div>
+</div>
+
+<footer>wss://localhost:6868 → uvicorn :8765 → this page · met 2Hz · pow 8Hz · fac 32Hz</footer>
+
+<script>
+const METRICS = ["engagement","excitement","stress","relaxation","interest","focus"];
+const SENSORS = {AF3:[62,52],F7:[30,84],F3:[72,86],FC5:[46,110],T7:[22,128],P7:[38,168],
+                 O1:[76,196],O2:[124,196],P8:[162,168],T8:[178,128],FC6:[154,110],
+                 F4:[128,86],F8:[170,84],AF4:[138,52]};
+const CQ = {0:"#333a4d",1:"#f87171",2:"#fbbf24",3:"#fbbf24",4:"#4ade80"};
+const FACES = {neutral:"😐", blink:"😉", winkL:"😜", winkR:"😜", smile:"😄",
+               clench:"😬", surprise:"😲", frown:"😠", laugh:"😂"};
+
+const mdiv = document.getElementById("metrics");
+METRICS.forEach(m => {
+  mdiv.insertAdjacentHTML("beforeend",
+    `<div class="metric"><div class="lbl"><span>${m}</span><span id="v-${m}">–</span></div>
+     <div class="bar"><i id="b-${m}"></i></div></div>`);
+});
+
+const svg = document.getElementById("head");
+svg.innerHTML = `<ellipse cx="100" cy="120" rx="88" ry="95" fill="none"
+  stroke="rgba(255,255,255,.15)"/><path d="M85 28 Q100 12 115 28" fill="none"
+  stroke="rgba(255,255,255,.15)"/>` +
+  Object.entries(SENSORS).map(([s,[x,y]]) =>
+    `<circle id="s-${s}" class="sensor" cx="${x}" cy="${y}" r="9"/>
+     <text class="sensor-label" x="${x}" y="${y+2.5}">${s}</text>`).join("");
+
+let history = [];
+const cv = document.getElementById("trend"), cx = cv.getContext("2d");
+
+function drawTrend() {
+  cx.clearRect(0,0,cv.width,cv.height);
+  if (history.length < 2) return;
+  const draw = (key, color) => {
+    cx.beginPath(); cx.strokeStyle = color; cx.lineWidth = 2;
+    history.forEach((h,i) => {
+      const x = i/(history.length-1)*cv.width, y = cv.height - (h[key]||0)*cv.height;
+      i ? cx.lineTo(x,y) : cx.moveTo(x,y);
+    });
+    cx.stroke();
+  };
+  draw("focus", "#7df9ff"); draw("stress", "#ff5d8f");
+}
+
+function apply(st) {
+  document.getElementById("conn").textContent = st.connected ? "● live" : "○ waiting for headset";
+  document.getElementById("conn").className = st.connected ? "live" : "";
+  for (const m of METRICS) {
+    const v = st.metrics?.[m];
+    if (v != null) {
+      document.getElementById(`v-${m}`).textContent = v.toFixed(2);
+      document.getElementById(`b-${m}`).style.width = (v*100)+"%";
+    }
+  }
+  for (const [s, q] of Object.entries(st.contact_quality || {}))
+    document.getElementById(`s-${s}`)?.setAttribute("fill", CQ[q] ?? CQ[0]);
+  document.getElementById("battery").textContent = st.battery ?? "–";
+  document.getElementById("signal").textContent = st.signal ?? "–";
+  document.getElementById("overall").textContent = st.eeg_quality?.overall ?? "–";
+  document.getElementById("headset").textContent = st.headset?.id?.replace("EPOCX-","") ?? "–";
+  const f = st.facial || {};
+  document.getElementById("fac").textContent =
+    FACES[f.eye] || FACES[f.upper] || FACES[f.lower] || "😐";
+  if (st.metrics?.focus != null) {
+    history.push(st.metrics);
+    if (history.length > 600) history.shift();
+    drawTrend();
+  }
+}
+
+function connect() {
+  const ws = new WebSocket(`ws://${location.host}/ws`);
+  ws.onmessage = e => { const m = JSON.parse(e.data); if (m.type === "state") apply(m.state); };
+  ws.onclose = () => setTimeout(connect, 2000);
+  setInterval(() => ws.readyState === 1 && ws.send("ping"), 15000);
+}
+connect();
+</script>
+</body>
+</html>

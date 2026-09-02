@@ -1,0 +1,457 @@
+/* ═══════════════════════════════════════════════════════════════
+   strands-emotiv · neural design system
+   The color system IS the band-power gradient:
+   theta → alpha → beta-L → beta-H → gamma (slow → fast)
+   ═══════════════════════════════════════════════════════════════ */
+
+:root {
+  /* EEG band tokens */
+  --band-theta: #7c5cff;   /* 4 to 8 Hz  · deep drift  */
+  --band-alpha: #4ea8ff;   /* 8 to 12 Hz · idle rhythm */
+  --band-betal: #4ee1c2;   /* 12 to 16 Hz· engaged     */
+  --band-betah: #b8f25d;   /* 16 to 25 Hz· driving     */
+  --band-gamma: #ffb84e;   /* 25 to 45 Hz· burst       */
+
+  --ink: #dbe4ee;
+  --ink-dim: #8b98a9;
+  --void: #070b10;
+  --surface: #0b0f14;
+  --surface-2: #10161d;
+  --line: #1c2530;
+  --line-hot: #2a3a4a;
+
+  --band-gradient: linear-gradient(90deg,
+    var(--band-theta), var(--band-alpha), var(--band-betal),
+    var(--band-betah), var(--band-gamma));
+
+  --md-primary-fg-color: var(--surface);
+  --md-accent-fg-color: var(--band-betal);
+}
+
+[data-md-color-scheme="slate"] {
+  --md-default-bg-color: var(--void);
+  --md-default-fg-color: var(--ink);
+  --md-default-fg-color--light: var(--ink-dim);
+  --md-code-bg-color: var(--surface-2);
+  --md-typeset-a-color: var(--band-betal);
+  --md-accent-fg-color: var(--band-betal);
+  --md-footer-bg-color: var(--surface);
+  --md-footer-bg-color--dark: var(--void);
+}
+
+/* ── header: signal bar ───────────────────────────────────────── */
+.md-header, .md-tabs {
+  background: rgba(11, 15, 20, 0.85);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line);
+}
+.md-header::after {
+  content: "";
+  display: block;
+  height: 1px;
+  background: var(--band-gradient);
+  opacity: 0.55;
+}
+
+/* ── typography ───────────────────────────────────────────────── */
+.md-typeset h1 {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+.md-typeset h1::after {
+  content: "";
+  display: block;
+  width: 4.5rem;
+  height: 2px;
+  margin-top: .45rem;
+  background: var(--band-gradient);
+  border-radius: 2px;
+}
+.md-typeset h2 {
+  letter-spacing: -0.01em;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: .25rem;
+}
+.md-typeset code { font-size: 0.85em; }
+
+/* links: animated gradient underline */
+.md-typeset a:not(.md-button) {
+  text-decoration: none;
+  background-image: linear-gradient(90deg, var(--band-betal), var(--band-alpha));
+  background-size: 0% 1px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size .25s ease;
+}
+.md-typeset a:not(.md-button):hover { background-size: 100% 1px; }
+
+/* ── surfaces ─────────────────────────────────────────────────── */
+.md-typeset img {
+  border-radius: 10px;
+  border: 1px solid var(--line);
+}
+.md-typeset table:not([class]) {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+  font-size: .72rem;
+}
+.md-typeset table:not([class]) th {
+  background: var(--surface-2);
+  font-family: var(--md-code-font-family);
+  font-size: .62rem;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: var(--ink-dim);
+}
+.md-typeset .highlight { border: 1px solid var(--line); border-radius: 10px; }
+.md-typeset pre > code { border-radius: 10px; }
+
+/* ── HUD components ───────────────────────────────────────────── */
+.ambient {
+  font-family: var(--md-code-font-family);
+  color: var(--band-betal);
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-left: 2px solid var(--band-betal);
+  border-radius: 8px;
+  padding: .6rem .9rem;
+  display: block;
+  box-shadow: 0 0 24px rgba(78, 225, 194, .06);
+}
+
+.video {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  margin: 1rem 0;
+}
+.video iframe { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+/* band chips: <span class="chip theta">θ theta</span> */
+.chip {
+  display: inline-block;
+  font-family: var(--md-code-font-family);
+  font-size: .7em;
+  padding: .1rem .55rem;
+  border-radius: 99px;
+  border: 1px solid var(--line-hot);
+  background: var(--surface-2);
+}
+.chip.theta { color: var(--band-theta); border-color: color-mix(in srgb, var(--band-theta) 40%, transparent); }
+.chip.alpha { color: var(--band-alpha); border-color: color-mix(in srgb, var(--band-alpha) 40%, transparent); }
+.chip.betal { color: var(--band-betal); border-color: color-mix(in srgb, var(--band-betal) 40%, transparent); }
+.chip.betah { color: var(--band-betah); border-color: color-mix(in srgb, var(--band-betah) 40%, transparent); }
+.chip.gamma { color: var(--band-gamma); border-color: color-mix(in srgb, var(--band-gamma) 40%, transparent); }
+
+/* ── motion (guarded) ─────────────────────────────────────────── */
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 18px rgba(78, 225, 194, .05); }
+  50%      { box-shadow: 0 0 28px rgba(78, 225, 194, .14); }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}
+
+/* ── nav polish ───────────────────────────────────────────────── */
+.md-nav__item .md-nav__link--active {
+  color: var(--band-betal);
+  font-weight: 600;
+}
+.md-search__form { background: var(--surface-2); border: 1px solid var(--line); }
+.md-footer { border-top: 1px solid var(--line); }
+
+/* ── hero (index) ─────────────────────────────────────────────── */
+.hero {
+  position: relative;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+  background: radial-gradient(ellipse at 50% 0%, #0d141c 0%, var(--void) 70%);
+  margin-bottom: 1.4rem;
+}
+.hero #eeg-hero {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: .33;
+  pointer-events: none;
+}
+.hero-inner {
+  position: relative;
+  padding: 2.2rem 1.4rem 1.8rem;
+  text-align: center;
+}
+.hero-inner h1 {
+  margin: .4rem 0 .3rem;
+  font-size: 2.1rem;
+}
+.hero-inner h1::after { margin: .5rem auto 0; }
+.hero-sub {
+  font-family: var(--md-code-font-family);
+  font-size: .72rem;
+  color: var(--ink-dim);
+  letter-spacing: .04em;
+  margin: 0;
+}
+
+/* ── signal path readout ──────────────────────────────────────── */
+.signal-path {
+  font-family: var(--md-code-font-family);
+  font-size: .68rem;
+  color: var(--ink-dim);
+  text-align: center;
+  letter-spacing: .03em;
+  margin: 1rem 0 .4rem;
+}
+.signal-path span { color: var(--band-betal); opacity: .8; }
+.signal-path code { background: var(--surface-2); border: 1px solid var(--line); }
+
+.band-legend { text-align: center; margin: .2rem 0 1.2rem; }
+.band-legend sub { color: var(--ink-dim); }
+
+/* ── cards: HUD grid ──────────────────────────────────────────── */
+.md-typeset .grid.cards > ul > li {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  transition: border-color .25s ease, box-shadow .25s ease, transform .25s ease;
+}
+.md-typeset .grid.cards > ul > li:hover {
+  border-color: color-mix(in srgb, var(--band-betal) 45%, var(--line));
+  box-shadow: 0 0 22px rgba(78, 225, 194, .10), inset 0 0 18px rgba(78, 225, 194, .03);
+  transform: translateY(-2px);
+}
+.md-typeset .grid.cards > ul > li:nth-child(1):hover { border-color: color-mix(in srgb, var(--band-alpha) 45%, var(--line)); box-shadow: 0 0 22px rgba(78,168,255,.10); }
+.md-typeset .grid.cards > ul > li:nth-child(3):hover { border-color: color-mix(in srgb, var(--band-theta) 45%, var(--line)); box-shadow: 0 0 22px rgba(124,92,255,.10); }
+.md-typeset .grid.cards > ul > li:nth-child(4):hover { border-color: color-mix(in srgb, var(--band-gamma) 45%, var(--line)); box-shadow: 0 0 22px rgba(255,184,78,.10); }
+
+/* ── data capsule (ECoT frame) ────────────────────────────────── */
+.capsule {
+  font-family: var(--md-code-font-family);
+  font-size: .68rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 1rem 0;
+  box-shadow: 0 0 28px rgba(78, 225, 194, .05);
+}
+.capsule-head {
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--line);
+  padding: .4rem .8rem;
+  color: var(--ink-dim);
+  font-size: .62rem;
+  text-transform: uppercase;
+  letter-spacing: .09em;
+}
+.capsule-row {
+  display: flex;
+  gap: .8rem;
+  padding: .42rem .8rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--line) 55%, transparent);
+  align-items: baseline;
+}
+.capsule-row:last-child { border-bottom: none; }
+.capsule-row > span:last-child { color: var(--ink); word-break: break-word; }
+.cap-key {
+  flex: 0 0 4.6rem;
+  font-size: .6rem;
+  letter-spacing: .08em;
+  text-align: right;
+  opacity: .95;
+}
+.k-task    { color: var(--band-alpha); }
+.k-ambient { color: var(--band-betal); }
+.k-plan    { color: var(--band-theta); }
+.k-tool    { color: var(--band-betah); }
+.k-act     { color: var(--band-gamma); }
+.k-reward  { color: var(--band-betal); }
+
+/* ── electrode strip ──────────────────────────────────────────── */
+.electrodes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .3rem;
+  justify-content: center;
+  margin: .8rem 0 1.2rem;
+}
+.electrodes span {
+  font-family: var(--md-code-font-family);
+  font-size: .62rem;
+  letter-spacing: .05em;
+  color: var(--band-betal);
+  background: var(--surface-2);
+  border: 1px solid var(--line-hot);
+  border-radius: 6px;
+  padding: .18rem .45rem;
+  transition: box-shadow .2s ease, border-color .2s ease;
+}
+.electrodes span:hover {
+  border-color: color-mix(in srgb, var(--band-betal) 50%, var(--line));
+  box-shadow: 0 0 12px rgba(78, 225, 194, .18);
+}
+
+/* ── consent HUD ──────────────────────────────────────────────── */
+.consent-hud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  justify-content: center;
+  margin: 1rem 0 1.2rem;
+}
+.verdict {
+  font-family: var(--md-code-font-family);
+  font-size: .68rem;
+  letter-spacing: .1em;
+  padding: .5rem 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--line-hot);
+  background: var(--surface-2);
+}
+.v-yes  { color: var(--band-betal); border-color: color-mix(in srgb, var(--band-betal) 45%, transparent); box-shadow: 0 0 16px rgba(78,225,194,.10); }
+.v-no   { color: var(--band-alpha); border-color: color-mix(in srgb, var(--band-alpha) 45%, transparent); box-shadow: 0 0 16px rgba(78,168,255,.10); }
+.v-veto { color: #ff6b7a; border-color: rgba(255,107,122,.45); box-shadow: 0 0 16px rgba(255,107,122,.12); }
+
+/* ambient readout: breathe (guarded by global reduced-motion rule) */
+.ambient { animation: pulse-glow 4s ease-in-out infinite; }
+
+/* ── terminal chrome on code blocks ───────────────────────────── */
+.md-typeset .highlight {
+  background: var(--surface);
+}
+.md-typeset .highlight::before {
+  content: "● ● ●";
+  display: block;
+  font-size: .5rem;
+  letter-spacing: .22em;
+  color: var(--line-hot);
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--line);
+  border-radius: 10px 10px 0 0;
+  padding: .38rem .8rem .32rem;
+  user-select: none;
+}
+.md-typeset .highlight pre { margin-top: 0; }
+.md-typeset .highlight .md-clipboard { top: 2rem; }
+/* keep chrome off line-number split tables' inner highlights */
+.md-typeset .highlighttable .highlight::before { display: none; }
+.md-typeset .highlighttable .md-clipboard { top: .5rem; }
+
+/* ── mermaid: match the design system ─────────────────────────── */
+.md-typeset .mermaid {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: .8rem;
+}
+/* flowchart nodes */
+.md-typeset .mermaid svg .node rect,
+.md-typeset .mermaid svg .node polygon,
+.md-typeset .mermaid svg .node circle {
+  fill: var(--surface-2) !important;
+  stroke: var(--line-hot) !important;
+}
+.md-typeset .mermaid svg .nodeLabel,
+.md-typeset .mermaid svg .edgeLabel,
+.md-typeset .mermaid svg text {
+  color: var(--ink) !important;
+  fill: var(--ink) !important;
+  font-family: var(--md-code-font-family) !important;
+  font-size: .68rem !important;
+}
+.md-typeset .mermaid svg .edgeLabel { background-color: var(--surface) !important; }
+.md-typeset .mermaid svg .flowchart-link,
+.md-typeset .mermaid svg .edgePaths path {
+  stroke: var(--band-betal) !important;
+  stroke-opacity: .65;
+}
+.md-typeset .mermaid svg marker path { fill: var(--band-betal) !important; }
+/* sequence diagrams */
+.md-typeset .mermaid svg .actor {
+  fill: var(--surface-2) !important;
+  stroke: var(--line-hot) !important;
+}
+.md-typeset .mermaid svg .messageLine0,
+.md-typeset .mermaid svg .messageLine1 {
+  stroke: var(--band-alpha) !important;
+}
+.md-typeset .mermaid svg .messageText { fill: var(--ink) !important; stroke: none !important; }
+.md-typeset .mermaid svg .activation0, .md-typeset .mermaid svg .activation1, .md-typeset .mermaid svg .activation2 {
+  fill: color-mix(in srgb, var(--band-betal) 18%, var(--surface-2)) !important;
+  stroke: var(--band-betal) !important;
+}
+.md-typeset .mermaid svg .actor-line { stroke: var(--line-hot) !important; }
+
+/* ── speed tiers (layers) ─────────────────────────────────────── */
+.tiers {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  margin: 1rem 0 1.4rem;
+  font-family: var(--md-code-font-family);
+}
+.tier {
+  display: grid;
+  grid-template-columns: 5.2rem 5.4rem 4.6rem 1fr;
+  gap: .8rem;
+  align-items: baseline;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-left-width: 2px;
+  border-radius: 10px;
+  padding: .6rem .9rem;
+  transition: box-shadow .25s ease;
+}
+.tier-speed { font-size: .82rem; font-weight: 700; }
+.tier-name  { font-size: .66rem; letter-spacing: .14em; color: var(--ink); }
+.tier-src   { font-size: .62rem; color: var(--ink-dim); }
+.tier-desc  { font-size: .66rem; color: var(--ink-dim); }
+.t-reflex  { border-left-color: var(--band-gamma); }
+.t-reflex  .tier-speed { color: var(--band-gamma); }
+.t-reflex:hover  { box-shadow: 0 0 18px rgba(255,184,78,.10); }
+.t-ambient { border-left-color: var(--band-betal); }
+.t-ambient .tier-speed { color: var(--band-betal); }
+.t-ambient:hover { box-shadow: 0 0 18px rgba(78,225,194,.10); }
+.t-intent  { border-left-color: var(--band-theta); }
+.t-intent  .tier-speed { color: var(--band-theta); }
+.t-intent:hover  { box-shadow: 0 0 18px rgba(124,92,255,.10); }
+@media (max-width: 44em) {
+  .tier { grid-template-columns: 5.2rem 1fr; }
+  .tier-src { display: none; }
+  .tier-desc { grid-column: 1 / -1; }
+}
+
+/* ── screenshots: monitor bezel ───────────────────────────────── */
+.md-typeset img.screen {
+  display: block;
+  border: 1px solid var(--line-hot);
+  border-radius: 12px;
+  padding: 4px;
+  background: var(--surface-2);
+  box-shadow: 0 0 30px rgba(78, 225, 194, .07), 0 8px 24px rgba(0, 0, 0, .45);
+}
+
+/* ── micro-tokens: selection + scrollbars ─────────────────────── */
+::selection {
+  background: color-mix(in srgb, var(--band-betal) 30%, transparent);
+  color: var(--ink);
+}
+.md-typeset pre code::-webkit-scrollbar { height: 6px; }
+.md-typeset pre code::-webkit-scrollbar-thumb {
+  background: var(--line-hot);
+  border-radius: 3px;
+}
+.md-typeset pre code::-webkit-scrollbar-thumb:hover {
+  background: color-mix(in srgb, var(--band-betal) 40%, var(--line-hot));
+}

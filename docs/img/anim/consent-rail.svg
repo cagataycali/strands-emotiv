@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 260" width="800" height="260" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" role="img" aria-labelledby="t d">
+<title id="t">The consent rail: three held hits say yes, one clench vetoes</title>
+<desc id="d">The agent asks a question. Mental command samples arrive as bars: power below 0.25 is discarded, three hits at or above it inside a rolling 2.5 second bracket make the decision, so a stray thought cannot say yes. Then a second ask is interrupted by a jaw clench at power 0.62: instant veto, the body outranks the mind. Every verdict is stamped into the EEG record with injectMarker. It refuses to even ask when fewer than half the electrodes read clean.</desc>
+<style>
+  @media (prefers-reduced-motion: no-preference){
+    .actA{animation:gA 14s linear infinite} .actB{animation:gB 14s linear infinite}
+    .brk{animation:brk 14s linear infinite}
+    .stampY{animation:sy 14s linear infinite} .stampV{animation:sv 14s linear infinite}
+    .mark{animation:mk 14s linear infinite}
+    .p0{animation:pop 14s linear infinite;animation-name:pk0;transform-box:fill-box;transform-origin:bottom center}@keyframes pk0{0%,5%{opacity:0;transform:scaleY(.1)}7%,100%{opacity:1;transform:scaleY(1)}}.p1{animation:pop 14s linear infinite;animation-name:pk1;transform-box:fill-box;transform-origin:bottom center}@keyframes pk1{0%,10%{opacity:0;transform:scaleY(.1)}12%,100%{opacity:1;transform:scaleY(1)}}.p2{animation:pop 14s linear infinite;animation-name:pk2;transform-box:fill-box;transform-origin:bottom center}@keyframes pk2{0%,15%{opacity:0;transform:scaleY(.1)}17%,100%{opacity:1;transform:scaleY(1)}}.p3{animation:pop 14s linear infinite;animation-name:pk3;transform-box:fill-box;transform-origin:bottom center}@keyframes pk3{0%,20%{opacity:0;transform:scaleY(.1)}22%,100%{opacity:1;transform:scaleY(1)}}.p4{animation:pop 14s linear infinite;animation-name:pk4;transform-box:fill-box;transform-origin:bottom center}@keyframes pk4{0%,25%{opacity:0;transform:scaleY(.1)}27%,100%{opacity:1;transform:scaleY(1)}}.p5{animation:pop 14s linear infinite;animation-name:pk5;transform-box:fill-box;transform-origin:bottom center}@keyframes pk5{0%,30%{opacity:0;transform:scaleY(.1)}32%,100%{opacity:1;transform:scaleY(1)}}.q0{animation:qk0 14s linear infinite;transform-box:fill-box;transform-origin:bottom center}@keyframes qk0{0%,58%{opacity:0;transform:scaleY(.1)}60%,100%{opacity:1;transform:scaleY(1)}}.q1{animation:qk1 14s linear infinite;transform-box:fill-box;transform-origin:bottom center}@keyframes qk1{0%,64%{opacity:0;transform:scaleY(.1)}66%,100%{opacity:1;transform:scaleY(1)}}.q2{animation:qk2 14s linear infinite;transform-box:fill-box;transform-origin:bottom center}@keyframes qk2{0%,70%{opacity:0;transform:scaleY(.1)}72%,100%{opacity:1;transform:scaleY(1)}}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .anim-scene{display:none !important}
+    .rm-only{display:inline !important}
+  }
+  @keyframes gA{0%,50%{opacity:1}54%,100%{opacity:0}}
+  @keyframes gB{0%,54%{opacity:0}58%,100%{opacity:1}}
+  @keyframes brk{0%,5%{transform:translateX(0)}30%{transform:translateX(104)}100%{transform:translateX(104)}}
+  @keyframes sy{0%,34%{opacity:0}38%,100%{opacity:1}}
+  @keyframes sv{0%,72%{opacity:0}75%,100%{opacity:1}}
+  @keyframes mk{0%,42%{opacity:0}46%,100%{opacity:1}}
+</style>
+<rect x="1" y="1" width="798" height="258" rx="12" fill="#0b0e14" stroke="#232b36"/>
+<g class="anim-scene">
+<!-- ACT 1: earned yes -->
+<g class="actA">
+<text x="24" y="30" font-size="12" fill="#7aa2ff">agent asks: <tspan fill="#c9d1d9">publish this episode to the Hub?</tspan> <tspan fill="#8b949e">· PUSH = yes · 45 s timeout</tspan></text>
+<line x1="40" y1="146" x2="420" y2="146" stroke="#8b949e" stroke-dasharray="4 4" opacity=".6"/>
+<text x="426" y="150" font-size="9" fill="#8b949e">pow 0.25: below this is discarded</text>
+<line x1="40" y1="196" x2="420" y2="196" stroke="#2a323e"/>
+<g class="p0"><rect x="56" y="160.0" width="26" height="36.0" rx="3" fill="#3a4350" opacity="0.55"/><text x="69.0" y="154.0" font-size="9" fill="#3a4350" text-anchor="middle">0.18</text></g>
+<g class="p1"><rect x="108" y="134.0" width="26" height="62.0" rx="3" fill="#4ee1c2" opacity="1"/><text x="121.0" y="128.0" font-size="9" fill="#4ee1c2" text-anchor="middle">0.31</text></g>
+<g class="p2"><rect x="160" y="152.0" width="26" height="44.0" rx="3" fill="#3a4350" opacity="0.55"/><text x="173.0" y="146.0" font-size="9" fill="#3a4350" text-anchor="middle">0.22</text></g>
+<g class="p3"><rect x="212" y="138.0" width="26" height="58.0" rx="3" fill="#4ee1c2" opacity="1"/><text x="225.0" y="132.0" font-size="9" fill="#4ee1c2" text-anchor="middle">0.29</text></g>
+<g class="p4"><rect x="264" y="172.0" width="26" height="24.0" rx="3" fill="#3a4350" opacity="0.55"/><text x="277.0" y="166.0" font-size="9" fill="#3a4350" text-anchor="middle">0.12</text></g>
+<g class="p5"><rect x="316" y="130.0" width="26" height="66.0" rx="3" fill="#4ee1c2" opacity="1"/><text x="329.0" y="124.0" font-size="9" fill="#4ee1c2" text-anchor="middle">0.33</text></g>
+<g class="brk"><rect x="50" y="118" width="150" height="86" rx="6" fill="none" stroke="#4ee1c2" stroke-dasharray="5 4" opacity=".8"/><text x="125" y="112" font-size="9" fill="#4ee1c2" text-anchor="middle">rolling 2.5 s</text></g>
+<g class="stampY"><text x="450" y="180" font-size="16" fill="#4ee1c2">YES · push ×3 in 2.5 s</text></g>
+<g class="mark"><text x="450" y="202" font-size="10" fill="#8b949e">injectMarker("mental_approval","yes") → stamped into the EEG record</text></g>
+</g>
+<!-- ACT 2: the veto -->
+<g class="actB" opacity="0">
+<text x="24" y="30" font-size="12" fill="#7aa2ff">agent asks: <tspan fill="#c9d1d9">delete this recording?</tspan> <tspan fill="#8b949e">· two pushes land, then the jaw speaks</tspan></text>
+<line x1="40" y1="146" x2="420" y2="146" stroke="#8b949e" stroke-dasharray="4 4" opacity=".6"/>
+<line x1="40" y1="196" x2="420" y2="196" stroke="#2a323e"/>
+<g class="q0"><rect x="56" y="140.0" width="26" height="56.0" rx="3" fill="#4ee1c2" opacity="1"/><text x="69.0" y="134.0" font-size="9" fill="#4ee1c2" text-anchor="middle">0.28</text></g>
+<g class="q1"><rect x="108" y="134.0" width="26" height="62.0" rx="3" fill="#4ee1c2" opacity="1"/><text x="121.0" y="128.0" font-size="9" fill="#4ee1c2" text-anchor="middle">0.31</text></g>
+<g class="q2"><rect x="160" y="72.0" width="26" height="124.0" rx="3" fill="#ffb454" opacity="1"/><text x="173.0" y="66.0" font-size="9" fill="#ffb454" text-anchor="middle">0.62</text></g>
+<text x="216" y="88" font-size="9" fill="#ffb454">fac: clench · lPow 0.62</text>
+<g class="stampV"><text x="450" y="180" font-size="16" fill="#ff7a7a">VETOED · jaw clench</text>
+<text x="450" y="202" font-size="10" fill="#8b949e">instant, mid-count. the body outranks the mind.</text></g>
+</g>
+<text x="24" y="244" font-size="10" fill="#586069">it refuses to even ask below CQ 7/14: a dry electrode is not consent</text>
+</g>
+<g class="rm-only" style="display:none">
+<text x="24" y="30" font-size="12" fill="#7aa2ff">the consent rail · two endings</text>
+<line x1="40" y1="146" x2="330" y2="146" stroke="#8b949e" stroke-dasharray="4 4" opacity=".6"/>
+<line x1="40" y1="196" x2="330" y2="196" stroke="#2a323e"/>
+<g><rect x="56" y="160.0" width="22" height="36.0" rx="3" fill="#3a4350" opacity="0.55"/><text x="67.0" y="154.0" font-size="9" fill="#3a4350" text-anchor="middle">0.18</text></g>
+<g><rect x="100" y="134.0" width="22" height="62.0" rx="3" fill="#4ee1c2" opacity="1"/><text x="111.0" y="128.0" font-size="9" fill="#4ee1c2" text-anchor="middle">0.31</text></g>
+<g><rect x="144" y="152.0" width="22" height="44.0" rx="3" fill="#3a4350" opacity="0.55"/><text x="155.0" y="146.0" font-size="9" fill="#3a4350" text-anchor="middle">0.22</text></g>
+<g><rect x="188" y="138.0" width="22" height="58.0" rx="3" fill="#4ee1c2" opacity="1"/><text x="199.0" y="132.0" font-size="9" fill="#4ee1c2" text-anchor="middle">0.29</text></g>
+<g><rect x="232" y="172.0" width="22" height="24.0" rx="3" fill="#3a4350" opacity="0.55"/><text x="243.0" y="166.0" font-size="9" fill="#3a4350" text-anchor="middle">0.12</text></g>
+<g><rect x="276" y="130.0" width="22" height="66.0" rx="3" fill="#4ee1c2" opacity="1"/><text x="287.0" y="124.0" font-size="9" fill="#4ee1c2" text-anchor="middle">0.33</text></g>
+<text x="56" y="226" font-size="12" fill="#4ee1c2">YES · push ×3 ≥ 0.25 in 2.5 s</text>
+<line x1="460" y1="146" x2="700" y2="146" stroke="#8b949e" stroke-dasharray="4 4" opacity=".6"/>
+<line x1="460" y1="196" x2="700" y2="196" stroke="#2a323e"/>
+<g><rect x="476" y="140.0" width="22" height="56.0" rx="3" fill="#4ee1c2" opacity="1"/><text x="487.0" y="134.0" font-size="9" fill="#4ee1c2" text-anchor="middle">0.28</text></g>
+<g><rect x="520" y="134.0" width="22" height="62.0" rx="3" fill="#4ee1c2" opacity="1"/><text x="531.0" y="128.0" font-size="9" fill="#4ee1c2" text-anchor="middle">0.31</text></g>
+<g><rect x="564" y="72.0" width="22" height="124.0" rx="3" fill="#ffb454" opacity="1"/><text x="575.0" y="66.0" font-size="9" fill="#ffb454" text-anchor="middle">0.62</text></g>
+<text x="476" y="226" font-size="12" fill="#ff7a7a">VETO · clench, instant</text>
+<text x="24" y="248" font-size="10" fill="#586069">refuses below CQ 7/14 · every verdict stamped via injectMarker("mental_approval")</text>
+</g>
+</svg>

@@ -1,0 +1,87 @@
+site_name: strands-emotiv
+site_description: An agent that can feel the person it's talking to. EMOTIV EPOC X, Strands tools, a live brain dashboard, and LeRobot v3 datasets.
+site_url: https://cagataycali.github.io/strands-emotiv/
+repo_url: https://github.com/cagataycali/strands-emotiv
+repo_name: cagataycali/strands-emotiv
+edit_uri: edit/main/docs/
+copyright: MIT · Cagatay Cali · 2019 → 2026
+
+theme:
+  name: material
+  custom_dir: overrides
+  language: en
+  logo: img/logo.svg
+  favicon: img/logo.svg
+  palette:
+    scheme: slate
+    primary: black
+    accent: teal
+  font:
+    text: Space Grotesk
+    code: JetBrains Mono
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.sections
+    - navigation.top
+    - navigation.footer
+    - toc.follow
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.code.annotate
+    - content.tabs.link
+
+extra_css:
+  - stylesheets/mirror.css
+
+extra_javascript:
+  - javascripts/eeg.js
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - tables
+  - toc:
+      permalink: "·"
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets:
+      base_path: [".", "docs"]
+      check_paths: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+plugins:
+  - search
+
+nav:
+  - strands-emotiv: index.md
+  - Start here:
+      - Quickstart: quickstart.md
+      - Dashboard: dashboard.md
+      - What the agent sees: agent.md
+  - The idea:
+      - Design rules: soul.md
+      - Three speeds: layers.md
+  - Data:
+      - The ECoT dataset: ecot.md
+      - Raw wire samples: wire.md
+  - Build:
+      - Tools (Strands @tool): tools.md
+      - Architecture: architecture.md
+      - API: api.md
+
+not_in_nav: |
+  DATASET.md
